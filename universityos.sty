@@ -1,0 +1,32 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{universityos}
+[2004/10/01 v1.0 UniversityOS Fonts, for UC Berkeley
+(c) 1995 Richard Beatty Designs, from Goudy's U of C Typologia
+2004, fitted and crammed into LaTeX by Jonathan Sprinkle, Ph.D.]
+\RequirePackage{cmap}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{t1enc}
+
+
+\newcommand*{\exfs@tempa}{}
+\newcommand*{\exfs@tempb}{}
+\newcommand*{\exfs@try@family}[1]{%
+\let\exfs@tempa\relax
+\begingroup
+\fontfamily{#1}\try@load@fontshape
+\expandafter\ifx\csname\curr@fontshape\endcsname\relax
+\PackageWarning{nfssext}{%
+Font family \f@encoding/#1 not available\MessageBreak
+Ignoring font switch}%
+\else
+\gdef\exfs@tempa{\fontfamily{#1}\selectfont}%
+\fi
+\endgroup
+\exfs@tempa}
+
+
+% Make the Berkeley font the default roman
+\renewcommand*{\rmdefault}{fgy}
+
+
+\endinput
